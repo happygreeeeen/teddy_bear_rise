@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Teddy bear rise</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+	<style type="text/css">
+		html{font-family: 'Noto Sans KR', sans-serif; color: white; text-align: center;}
+		body{margin: 0 ; height: 100vh; background-image: url('background.jpg'); background-size: cover;}
+		.word{animation: fadein 1s forwards; animation-iteration-count: 1;}
+
+		.album-div{text-align: center; margin-top: 100px;}
+		.album{max-width: 250px; max-height: 250px;}
+		#song-title{font-weight:500; font-size: 1.5Rem;}
+		#singer{font-weight: 300; font-size: 0.9Rem; margin-bottom: 10px;}
+		#poetText{font-weight: 300;}
+		.bear{position: absolute; left: 0; top: 0; animation: shift 70s infinite linear; z-index: -1;}
+		@keyframes shift{
+			from{} to{top: -70%}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class= "album-div">
+		<img class = "album" src="album.jpg">
+		<audio class= "snd" src="song.mp3"></audio>
+	</div>
+
+	<div id = song-title>
+		Teddy bear rise
+	</div>
+
+	<div id = singer>
+		우효
+	</div>
+
+	<div id = "poetText">
+		<span class = 'word'></span>
+	</div>
+
+
+	<script type="text/javascript">
+		
+		var state = "off";
+				album.onclick = function(){
+					if(state == "off"){
+						snd.play();
+						state = "on";
+					} else if(state == "on"){
+						snd.pause();
+						state = "off";
+					}
+				} 
+
+	</script>
+
+	<script type="text/javascript">
+
+		var poet = "하고 싶은 말은 해야 돼<br>\r\n 안 그러면 정말 병이 돼<br>\r\n 묻어두고 숨기려 해도<br>\r\n 결국 드러나게 돼 있어<br>\r\n 어떤 말이든 꼭 해야 돼<br>\r\n 안 그러면 정말 병이 돼<br>\r\n 묻어두고 숨기려 해도<br>\r\n 결국 드러나게 돼 있어<br>\r\n 어떤 말이든 꼭 해야 돼<br>\r\n 안 그러면 정말 후회해<br>\r\n 솔직할 수 있는 시간도<br>\r\n 이제 얼마 남지 않았어<br>\r\n ";
+		var poetArr = poet.split("\r\n");
+		console.log(poetArr);
+
+		var myTimer = setInterval(print,3000);
+		var s=0;
+		function print(){
+			poetText.innerHTML += "<span class='word'>" + poetArr[s] + "</span>";
+			s++
+			if(s == poetArr.length){
+				clearInterval(myTimer);
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+
+		for(var i=0; i<9; i++){
+			var a = document.createElement("img");
+			a.src = "bear.png";
+			a.className = "bear";
+			a.style.width = "130px"
+			a.style.height = "150px";
+			a.style.left = Math.random()*1600 + "px";
+			a.style.top = Math.random()*800 + "px";
+			document.body.appendChild(a);}	
+	</script>
+
+</body>
+</html>
